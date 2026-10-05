@@ -23,7 +23,7 @@ permalink: /accessibility/
       <li>All menus and links can be used with the keyboard, and keyboard focus is clearly visible.</li>
       <li>A “Skip to main content” link appears as the first item for keyboard and screen-reader users.</li>
       <li>Images have text descriptions; decorative images are hidden from screen readers.</li>
-      <li>The moving background video on the home page can be paused, and stops automatically when your device asks for reduced motion.</li>
+      <li>The moving background video on the home page can be paused with the button in its corner.</li>
       <li>Pages work on phones and tablets and can be zoomed to 200% without losing content.</li>
       <li>Email addresses are clickable links, and every page shows our contact details.</li>
     </ul>
@@ -57,7 +57,7 @@ permalink: /accessibility/
       <li>ניתן להפעיל את כל התפריטים והקישורים באמצעות המקלדת, והמיקוד מסומן בבירור.</li>
       <li>קישור „דילוג לתוכן הראשי” מופיע ראשון עבור משתמשי מקלדת וקוראי מסך.</li>
       <li>לתמונות יש תיאור טקסטואלי; תמונות עיצוביות מוסתרות מקוראי מסך.</li>
-      <li>ניתן לעצור את וידאו הרקע בעמוד הבית, והוא נעצר אוטומטית כאשר המכשיר מבקש להפחית תנועה.</li>
+      <li>ניתן לעצור את וידאו הרקע בעמוד הבית באמצעות הכפתור שבפינתו.</li>
       <li>האתר מותאם לטלפונים ולטאבלטים וניתן להגדילו עד 200% ללא אובדן תוכן.</li>
     </ul>
 

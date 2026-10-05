@@ -16,9 +16,8 @@ layout: default
 <script>
   (function () {
     var hero = document.currentScript.closest(".hero"), v = hero.querySelector("video"), b = hero.querySelector(".hero-pause");
-    function set(paused) { hero.classList.toggle("paused", paused); b.setAttribute("aria-label", paused ? "Play background video" : "Pause background video"); paused ? v.pause() : v.play(); }
+    function set(paused) { hero.classList.toggle("paused", paused); b.setAttribute("aria-label", paused ? "Play background video" : "Pause background video"); if (paused) v.pause(); else { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
     b.addEventListener("click", function () { set(!v.paused ? true : false); });
-  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) set(true);
 })();
 /* make the subtitle exactly as wide as the title (only when the title fits on one line) */
 (function () {
