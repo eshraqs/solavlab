@@ -18,6 +18,13 @@ layout: default
     var hero = document.currentScript.closest(".hero"), v = hero.querySelector("video"), b = hero.querySelector(".hero-pause");
     function set(paused) { hero.classList.toggle("paused", paused); b.setAttribute("aria-label", paused ? "Play background video" : "Pause background video"); if (paused) v.pause(); else { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
     b.addEventListener("click", function () { set(!v.paused ? true : false); });
+    /* keep the button in sync with the real state, and start playback explicitly
+       (some browsers skip the autoplay attribute; muted playback is always allowed) */
+    function sync() { hero.classList.toggle("paused", v.paused); b.setAttribute("aria-label", v.paused ? "Play background video" : "Pause background video"); }
+    v.addEventListener("play", sync); v.addEventListener("pause", sync);
+    v.muted = true; v.defaultMuted = true;
+    function start() { var p = v.play(); if (p && p.catch) p.catch(sync); }
+    if (v.readyState >= 2) start(); else v.addEventListener("canplay", start, { once: true });
 })();
 /* make the subtitle exactly as wide as the title (only when the title fits on one line) */
 (function () {
