@@ -18,8 +18,27 @@ layout: default
     var hero = document.currentScript.closest(".hero"), v = hero.querySelector("video"), b = hero.querySelector(".hero-pause");
     function set(paused) { hero.classList.toggle("paused", paused); b.setAttribute("aria-label", paused ? "Play background video" : "Pause background video"); paused ? v.pause() : v.play(); }
     b.addEventListener("click", function () { set(!v.paused ? true : false); });
-    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) set(true);
-  })();
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) set(true);
+})();
+/* make the subtitle exactly as wide as the title (only when the title fits on one line) */
+(function () {
+  var t = document.querySelector(".hero-title"), s = document.querySelector(".hero-tagline");
+  function fit() {
+    s.style.fontSize = ""; s.style.whiteSpace = "";
+    var lh = parseFloat(getComputedStyle(t).lineHeight) || parseFloat(getComputedStyle(t).fontSize) * 1.2;
+    if (t.getBoundingClientRect().height > lh * 1.4) return;           /* title wraps: leave subtitle as is */
+    var r = document.createRange(); r.selectNodeContents(t);
+    var tw = r.getBoundingClientRect().width;
+    s.style.whiteSpace = "nowrap";
+    var sw = s.getBoundingClientRect().width;
+    if (sw > 0) s.style.fontSize = (parseFloat(getComputedStyle(s).fontSize) * tw / sw) + "px";
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    t = document.querySelector(".hero-title"); s = document.querySelector(".hero-tagline");
+    fit(); if (document.fonts) document.fonts.ready.then(fit);
+    window.addEventListener("load", fit); window.addEventListener("resize", fit);
+  });
+})();
 </script>
   <div class="hero-content">
     <h1 class="hero-title">Solav Biomechanical Interfaces Group</h1>
