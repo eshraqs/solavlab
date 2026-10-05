@@ -971,6 +971,5 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
 .video-desc { font-size: 0.9rem; color: var(--text-light); margin-top: 8px; }
 .footer-bottom p a { color: inherit; text-decoration: underline; }
 .a11y-statement ul { margin: 0.4em 0 1em 1.4em; }
-.a11y-statement [dir="rtl"] ul { margin: 0.4em 1.4em 1em 0; }
 .a11y-date { font-size: 0.85rem; color: var(--text-light); }
 .a11y-statement a { color: var(--sky); }
