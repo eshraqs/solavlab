@@ -144,24 +144,32 @@ noindex: true
    or in the visitor's browser. See SETUP.md for how to fill in
    the values below.
 ═══════════════════════════════════════════════════════════════ */
-var FORM_ACTION = "PASTE_GOOGLE_FORM_formResponse_URL_HERE";
+var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdkbBIZEBTGNsDIiHSzuY4vlvRZ0z_tB3m3z1zxjflo8E4QwQ/formResponse";
 var ENTRY = {
-  name:   "entry.0000000001",
-  age:    "entry.0000000002",
-  email:  "entry.0000000003",
-  phone:  "entry.0000000004",
-  city:   "entry.0000000005",
-  injury: "entry.0000000006",
-  idate:  "entry.0000000007",
-  sdate:  "entry.0000000008",
-  notes:  "entry.0000000009",
-  consent:"entry.0000000010"
+  name:   "entry.1373218301",
+  age:    "entry.1918573883",
+  email:  "entry.1078241833",
+  phone:  "entry.1051490978",
+  city:   "entry.958503232",
+  injury: "entry.973298115",
+  idate:  "entry.1663561707",
+  sdate:  "entry.1063504957",
+  notes:  "entry.229607401",
+  consent:"entry.904401147"
 };
 
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var val = function (id) { return $(id).value.trim(); };
   function flag(id, bad) { $(id).closest(".olafo-field").classList.toggle("bad", bad); return !bad; }
+
+  function addDate(data, entry, iso) { /* Google Forms date questions take separate year/month/day fields */
+    if (!iso) return;
+    var p = iso.split("-");
+    data.append(entry + "_year", p[0]);
+    data.append(entry + "_month", String(parseInt(p[1], 10)));
+    data.append(entry + "_day", String(parseInt(p[2], 10)));
+  }
 
   function validate() {
     var age = parseInt(val("o-age"), 10), ok = true;
@@ -189,8 +197,8 @@ var ENTRY = {
     data.append(ENTRY.phone, val("o-phone"));
     data.append(ENTRY.city, val("o-city"));
     data.append(ENTRY.injury, val("o-injury"));
-    data.append(ENTRY.idate, val("o-idate"));
-    data.append(ENTRY.sdate, val("o-sdate"));
+    addDate(data, ENTRY.idate, val("o-idate"));
+    addDate(data, ENTRY.sdate, val("o-sdate"));
     data.append(ENTRY.notes, val("o-notes"));
     data.append(ENTRY.consent, "אישר/ה");
 
