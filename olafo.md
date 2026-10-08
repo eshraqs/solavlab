@@ -107,7 +107,7 @@ noindex: true
 
   <div class="olafo-success" id="olafo-ok" role="status" tabindex="-1">
     <h3>תודה רבה!</h3>
-    <p>פרטייך התקבלו בהצלחה. הצוות הקליני שלנו יבחן את הפרטים ויחזור אליך תוך יומיים עסקיים.</p>
+    <p>פרטייך התקבלו בהצלחה. תודה רבה.</p>
   </div>
   <div class="olafo-fail" id="olafo-fail" role="alert">
     <p>אירעה שגיאה בשליחה. נסו שוב, או פנו אלינו ישירות בדוא״ל.</p>
