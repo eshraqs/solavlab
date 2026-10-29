@@ -7,6 +7,9 @@ noindex: true
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" />
 <style>
+.olafo-embed { max-width: 640px; }
+.olafo-embed iframe { display: block; width: 100%; height: 2100px; border: 0; border-radius: var(--radius); background: transparent; }
+@media (max-width: 700px) { .olafo-embed iframe { height: 2250px; } }
   .olafo { direction: rtl; text-align: right; font-family: 'Assistant', system-ui, sans-serif; font-size: 1.2rem; line-height: 1.7; }
   .olafo h1, .olafo h2, .olafo h3 { font-family: 'Assistant', system-ui, sans-serif; }
   .olafo .page-hero h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
@@ -66,6 +69,8 @@ noindex: true
     font-size: 0.92rem; /* הקטנה קלה רק בנייד כדי שלא ייחתך */
   }
 }
+
+
 </style>
 
 <div class="olafo" lang="he" dir="rtl">
@@ -127,24 +132,9 @@ noindex: true
     <p>אירעה שגיאה בשליחה. נסו שוב, או פנו אלינו ישירות בדוא״ל.</p>
   </div>
 
-  <form class="olafo-form" id="olafo-f" novalidate>
-    <div class="olafo-field"><label for="o-name">שם מלא <span class="req">*</span></label><input type="text" id="o-name" autocomplete="name" /><div class="olafo-err">יש להזין שם מלא</div></div>
-    <div class="olafo-field"><label for="o-age">גיל <span class="req">*</span></label><input type="number" id="o-age" min="18" max="80" /><div class="olafo-err">יש להזין גיל תקין (18–80)</div></div>
-    <div class="olafo-field"><label for="o-email">דואר אלקטרוני <span class="req">*</span></label><input type="email" id="o-email" autocomplete="email" dir="ltr" style="text-align:right" /><div class="olafo-err">יש להזין כתובת דואר אלקטרוני תקינה</div></div>
-    <div class="olafo-field"><label for="o-phone">מספר טלפון <span class="req">*</span></label><input type="tel" id="o-phone" autocomplete="tel" placeholder="050-000-0000" dir="ltr" style="text-align:right" /><div class="olafo-err">יש להזין מספר טלפון</div></div>
-    <div class="olafo-field"><label for="o-city">מקום מגורים <span class="req">*</span></label><input type="text" id="o-city" /><div class="olafo-err">יש להזין מקום מגורים</div></div>
-    <div class="olafo-field"><label for="o-injury">סוג הפציעה (אם ידוע)</label><input type="text" id="o-injury" placeholder="לדוגמה: שבר בקרסול, החלמה מניתוח..." /></div>
-    <div class="olafo-row">
-      <div class="olafo-field"><label for="o-idate">תאריך הפציעה <span class="req">*</span></label><input type="date" id="o-idate" /><div class="olafo-err">יש להזין תאריך פציעה</div></div>
-      <div class="olafo-field"><label for="o-sdate">תאריך הניתוח (אופציונלי)</label><input type="date" id="o-sdate" /></div>
-    </div>
-    <div class="olafo-field"><label for="o-notes">הערות נוספות (אופציונלי)</label><textarea id="o-notes" placeholder="האם יש מידע נוסף שתרצה/י שנדע?"></textarea></div>
-    <div class="olafo-field">
-      <div class="olafo-consent"><input type="checkbox" id="o-consent" /><label for="o-consent">אני מאשר/ת שמירת הפרטים לצורך בדיקת התאמה למחקר בלבד. ידוע לי שביכולתי לבטל את הסכמתי בכל עת.</label></div>
-      <div class="olafo-err">יש לאשר את תנאי הפרטיות להמשך</div>
-    </div>
-    <button type="submit" class="btn" id="o-submit" style="margin-top:0">שליחת הפרטים לבדיקת התאמה</button>
-  </form>
+<div class="olafo-embed">
+  <iframe src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=TCxQ8S7uHEGXFchV9nU7hGm5XGIz2y1OjNaJus3DzblURjBUVEZZN0VOTk4zSFVWWlpYOUlFUkZRNy4u&embed=true&lang=he-IL" loading="lazy" scrolling="no"></iframe>
+</div>
 
   <p class="olafo-contact">לשאלות: אשראק ספורי, {% include email.html address="eshraqs@campus.technion.ac.il" %}</p>
 </div>
@@ -161,83 +151,4 @@ noindex: true
 
 </div>
 
-<script>
-/* ═══════════════════════════════════════════════════════════════
-   PRIVATE STORAGE: answers go to a Google Form (responses are
-   visible only to the form owner). Nothing is stored in GitHub
-   or in the visitor's browser. See SETUP.md for how to fill in
-   the values below.
-═══════════════════════════════════════════════════════════════ */
-var FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdkbBIZEBTGNsDIiHSzuY4vlvRZ0z_tB3m3z1zxjflo8E4QwQ/formResponse";
-var ENTRY = {
-  name:   "entry.1373218301",
-  age:    "entry.1918573883",
-  email:  "entry.1078241833",
-  phone:  "entry.1051490978",
-  city:   "entry.958503232",
-  injury: "entry.973298115",
-  idate:  "entry.1663561707",
-  sdate:  "entry.1063504957",
-  notes:  "entry.229607401",
-  consent:"entry.904401147"
-};
 
-(function () {
-  var $ = function (id) { return document.getElementById(id); };
-  var val = function (id) { return $(id).value.trim(); };
-  function flag(id, bad) { $(id).closest(".olafo-field").classList.toggle("bad", bad); return !bad; }
-
-  function addDate(data, entry, iso) { /* Google Forms date questions take separate year/month/day fields */
-    if (!iso) return;
-    var p = iso.split("-");
-    data.append(entry + "_year", p[0]);
-    data.append(entry + "_month", String(parseInt(p[1], 10)));
-    data.append(entry + "_day", String(parseInt(p[2], 10)));
-  }
-
-  function validate() {
-    var age = parseInt(val("o-age"), 10), ok = true;
-    ok = flag("o-name",  val("o-name").length < 2) && ok;
-    ok = flag("o-age",   !(age >= 18 && age <= 80)) && ok;
-    ok = flag("o-email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val("o-email"))) && ok;
-    ok = flag("o-phone", val("o-phone").replace(/\D/g, "").length < 9) && ok;
-    ok = flag("o-city",  !val("o-city")) && ok;
-    ok = flag("o-idate", !val("o-idate")) && ok;
-    ok = flag("o-consent", !$("o-consent").checked) && ok;
-    return ok;
-  }
-
-  $("olafo-f").addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (!validate()) return;
-    var btn = $("o-submit");
-    btn.disabled = true; btn.textContent = "שולח/ת...";
-    $("olafo-fail").style.display = "none";
-
-    var data = new FormData();
-    data.append(ENTRY.name, val("o-name"));
-    data.append(ENTRY.age, val("o-age"));
-    data.append(ENTRY.email, val("o-email"));
-    data.append(ENTRY.phone, val("o-phone"));
-    data.append(ENTRY.city, val("o-city"));
-    data.append(ENTRY.injury, val("o-injury"));
-    addDate(data, ENTRY.idate, val("o-idate"));
-    addDate(data, ENTRY.sdate, val("o-sdate"));
-    data.append(ENTRY.notes, val("o-notes"));
-    data.append(ENTRY.consent, "אישר/ה");
-
-    /* Google Forms does not let another site read the reply (no-cors),
-       so a request that went through is treated as "sent". */
-    fetch(FORM_ACTION, { method: "POST", mode: "no-cors", body: data })
-      .then(function () {
-        $("olafo-f").style.display = "none";
-        var ok = $("olafo-ok"); ok.style.display = "block"; ok.focus();
-        ok.scrollIntoView({ behavior: "smooth" });
-      })
-      .catch(function () {
-        $("olafo-fail").style.display = "block";
-        btn.disabled = false; btn.textContent = "שליחת הפרטים לבדיקת התאמה";
-      });
-  });
-})();
-</script>
